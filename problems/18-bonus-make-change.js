@@ -56,11 +56,37 @@ combinations.
 function greedyMakeChange(target, coins = [25, 10, 5, 1]) {
   // no tests for greedyMakeChange so make sure to test this on your own
   // your code here
+
+  let change = [];
+
+  if (target === 0) {
+    return [];
+  }
+
+  for (let i = 0; i < coins.length; i++) {
+    let currentCoin = coins[i];
+    if (target >= currentCoin) {
+       change = [...change, currentCoin];
+       target = target - currentCoin;
+       break;
+    }
+  }
+
+  change = [...greedyMakeChange(target, coins), ...change];
+  return change;
+
+
 }
 
-function makeBetterChange(target, coins = [25, 10, 5, 1]) {
+function makeBetterChange(target, coins = [15, 3]) {
   // your code here
 }
+
+//console.log(greedyMakeChange(21)); // [1, 10, 10]
+//makeChange(75); // [25, 25, 25]
+console.log(greedyMakeChange(33, [15, 3])); // [3, 15, 15]
+//makeChange(34, [15, 3]); // null
+//makeChange(24, [10, 7, 1]) // [7, 7, 10]
 
 
 /**************DO NOT MODIFY ANYTHING UNDER THIS LINE*****************/
